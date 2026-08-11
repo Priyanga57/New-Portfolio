@@ -60,11 +60,15 @@ export function Navigation() {
         )}>
         
         <Link to="/" className="group flex items-center gap-3" aria-label={`${profile.name}, home`}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-surface font-display text-sm font-bold text-primary">
-            PV
-          </span>
+          <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface shadow-sm transition-transform duration-300 group-hover:scale-105 group-hover:border-primary/50">
+            <img
+              src="/logo.png"
+              alt="Priyanga V S Logo"
+              className="h-full w-full object-cover"
+            />
+          </div>
           <span className="hidden flex-col leading-tight sm:flex">
-            <span className="font-display text-sm font-semibold tracking-tight text-fg">{profile.name}</span>
+            <span className="font-display text-sm font-semibold tracking-tight text-fg group-hover:text-primary transition-colors">{profile.name}</span>
             <span className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">{profile.role}</span>
           </span>
         </Link>

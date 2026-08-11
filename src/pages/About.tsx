@@ -77,8 +77,25 @@ export function About() {
             </div>
           </Reveal>
 
-          {/* ── Education + Stats sidebar ── */}
+          {/* ── Profile & Education sidebar ── */}
           <div className="space-y-4">
+            <Reveal delay={0.03}>
+              <div className="flex items-center gap-4 rounded-2xl border border-line bg-surface p-5 shadow-card">
+                <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-primary/40 bg-surface shadow-md">
+                  <img
+                    src="/logo.png"
+                    alt="Priyanga V S"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-display text-base font-bold text-fg">{profile.name}</h3>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">{profile.role}</p>
+                  <p className="mt-1 text-xs text-muted">Clean Data · Clear Insights</p>
+                </div>
+              </div>
+            </Reveal>
+
             <Reveal delay={0.06}>
               <div className="rounded-2xl border border-line bg-surface p-6 shadow-card">
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary-soft text-primary">

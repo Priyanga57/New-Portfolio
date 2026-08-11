@@ -9,8 +9,19 @@ export function Footer() {
     <footer className="border-t border-line bg-surface">
       <div className="mx-auto grid max-w-content gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="font-display text-lg font-semibold tracking-tight text-fg">{profile.name}</p>
-          <p className="mt-1 text-xs uppercase tracking-[0.18em] text-primary">{profile.role}</p>
+          <div className="flex items-center gap-3">
+            <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface shadow-sm">
+              <img
+                src="/logo.png"
+                alt="Priyanga V S Logo"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div>
+              <p className="font-display text-lg font-semibold tracking-tight text-fg">{profile.name}</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-primary">{profile.role}</p>
+            </div>
+          </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
             SQL, Python, Excel and Power BI used to clean, model and visualize data so teams can make decisions with
             confidence.

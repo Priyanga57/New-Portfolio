@@ -18,9 +18,18 @@ export function HeroVisual() {
         className="rounded-2xl border border-line bg-surface p-5 shadow-glow">
         
         <div className="flex items-center justify-between border-b border-line pb-4">
-          <div>
-            <p className="text-[0.68rem] uppercase tracking-[0.16em] text-muted">Analysis workflow</p>
-            <p className="mt-1 font-display text-sm font-semibold text-fg">Data → Insight</p>
+          <div className="flex items-center gap-3">
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface shadow-sm">
+              <img
+                src="/logo.png"
+                alt="Priyanga Logo"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div>
+              <p className="text-[0.68rem] uppercase tracking-[0.16em] text-muted">Analysis workflow</p>
+              <p className="font-display text-sm font-semibold text-fg">Data → Insight</p>
+            </div>
           </div>
           <div className="flex gap-1.5">
             <span className="h-2 w-2 rounded-full bg-primary" />
