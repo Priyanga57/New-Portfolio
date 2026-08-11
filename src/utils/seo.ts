@@ -6,7 +6,6 @@ export const personSchema: Record<string, unknown> = {
   name: profile.name,
   jobTitle: profile.role,
   email: `mailto:${profile.email}`,
-  telephone: `+91${profile.phone}`,
   address: {
     '@type': 'PostalAddress',
     addressRegion: 'Tamil Nadu',

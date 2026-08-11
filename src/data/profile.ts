@@ -8,8 +8,7 @@ import {
   UsersIcon,
   GithubIcon,
   LinkedinIcon,
-  MailIcon,
-  PhoneIcon } from
+  MailIcon } from
 'lucide-react';
 import type { NavLink, SkillGroup, SocialLink } from '../types/portfolio';
 
@@ -23,7 +22,6 @@ export const profile = {
   tagline: 'Turning raw data into actionable business insights.',
   location: 'Tamil Nadu, India',
   email: 'priyangaa7512@gmail.com',
-  phone: '6374231954',
   linkedin: 'https://www.linkedin.com/in/priyangavs',
   github: 'https://github.com/Priyanga57',
   summary:
@@ -97,5 +95,4 @@ export const navLinks: NavLink[] = [
 export const socialLinks: SocialLink[] = [
 { label: 'GitHub', href: profile.github, icon: GithubIcon, display: 'Priyanga57' },
 { label: 'LinkedIn', href: profile.linkedin, icon: LinkedinIcon, display: 'priyangavs' },
-{ label: 'Email', href: `mailto:${profile.email}`, icon: MailIcon, display: profile.email },
-{ label: 'Phone', href: `tel:${profile.phone}`, icon: PhoneIcon, display: profile.phone }];
+{ label: 'Email', href: `mailto:${profile.email}`, icon: MailIcon, display: profile.email }];

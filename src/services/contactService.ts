@@ -30,12 +30,15 @@ export async function sendContactMessage(data: ContactFormData): Promise<Submiss
           template_id:     templateId,
           user_id:         publicKey,
           template_params: {
+            user_name:    data.name,
+            user_email:   data.email,
             from_name:    data.name,
-            reply_to:     data.email,
             from_email:   data.email,
+            reply_to:     data.email,
+            time:         new Date().toLocaleString(),
+            submitted_at: new Date().toLocaleString(),
             message:      data.message,
             to_name:      'Priyanga V S',
-            submitted_at: new Date().toLocaleString(),
           },
         }),
       });
