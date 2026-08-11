@@ -1,0 +1,93 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+:root {
+  --bg: #ffffff;
+  --surface: #f7f8fa;
+  --surface-2: #eff2f6;
+  --border: #e3e7ee;
+  --border-strong: #cfd6e2;
+  --fg: #0b1220;
+  --muted: #58637a;
+  --primary: #1257e0;
+  --primary-fg: #ffffff;
+  --primary-soft: rgba(18, 87, 224, 0.09);
+  --accent: #6d4aff;
+  --accent-soft: rgba(109, 74, 255, 0.09);
+  --success: #10794f;
+  --warning: #a15c07;
+  --grid-line: rgba(11, 18, 32, 0.05);
+  --glow: rgba(18, 87, 224, 0.14);
+  --shadow-card: 0 1px 2px rgba(11, 18, 32, 0.04), 0 12px 32px -18px rgba(11, 18, 32, 0.28);
+}
+.dark {
+  --bg: #07080b;
+  --surface: #0d0f14;
+  --surface-2: #13161d;
+  --border: #21252e;
+  --border-strong: #2f3542;
+  --fg: #eef2f8;
+  --muted: #98a3b5;
+  --primary: #38bdf8;
+  --primary-fg: #04121b;
+  --primary-soft: rgba(56, 189, 248, 0.12);
+  --accent: #8b8cf9;
+  --accent-soft: rgba(139, 140, 249, 0.12);
+  --success: #34d399;
+  --warning: #fbbf24;
+  --grid-line: rgba(238, 242, 248, 0.045);
+  --glow: rgba(56, 189, 248, 0.16);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -24px rgba(0, 0, 0, 0.9);
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection {
+  background: var(--primary);
+  color: var(--primary-fg);
+}
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.grid-backdrop {
+  background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.dot-backdrop {
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.theme-transition,
+.theme-transition * {
+  transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
