@@ -7,6 +7,7 @@ import { heroKeywords, profile } from '../data/profile';
 import { usePortfolio } from '../contexts/PortfolioContext';
 import { buttonStyles } from '../components/Button';
 import { HeroVisual } from './HeroVisual';
+import { downloadFile } from '../utils/downloadFile';
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -82,17 +83,16 @@ export function Hero() {
               View My Work
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
             </Link>
-            {resume.url ?
-            <a
-              href={resume.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={buttonStyles({ variant: 'secondary' })}>
-              
+            {resume.url && (
+              <button
+                type="button"
+                onClick={() => downloadFile(resume.url!, 'Priyanga_VS_Resume.pdf')}
+                className={buttonStyles({ variant: 'secondary' })}
+                aria-label="Download Priyanga's resume as PDF">
                 <DownloadIcon className="h-4 w-4" aria-hidden="true" />
                 Download Resume
-              </a> :
-            null}
+              </button>
+            )}
             <Link to="/contact" className={buttonStyles({ variant: 'secondary' })}>
               Let&apos;s Connect
             </Link>

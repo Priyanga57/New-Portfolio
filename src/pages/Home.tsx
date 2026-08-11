@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Hero } from '../sections/Hero';
+import { MilestonePath } from '../sections/MilestonePath';
 import { Skills } from '../sections/Skills';
 import { Workflow } from '../sections/Workflow';
 import { FeaturedProjects } from '../sections/FeaturedProjects';
@@ -24,6 +25,7 @@ export function Home() {
   return (
     <main>
       <Hero />
+      <MilestonePath />
       <Skills />
       <Workflow />
       <FeaturedProjects />
@@ -31,6 +33,6 @@ export function Home() {
       <CertificatesPreview />
       <AboutPreview />
       <ContactCTA />
-    </main>);
-
+    </main>
+  );
 }

@@ -6,6 +6,7 @@ import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
+import { SkillsPage } from './pages/SkillsPage';
 import { Projects } from './pages/Projects';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { Experience } from './pages/Experience';
@@ -41,6 +42,7 @@ export function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/skills" element={<SkillsPage />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/projects/:projectId" element={<ProjectDetail />} />
                 <Route path="/experience" element={<Experience />} />

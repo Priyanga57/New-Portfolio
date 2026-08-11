@@ -4,10 +4,10 @@ import {
   SHEET_NAMES,
   clearSheetCache,
   fetchSheetRows,
+  fetchResumeUrl,
   parseCertificates,
   parseExperience,
-  parseProjects,
-  parseResume } from
+  parseProjects } from
 '../utils/googleSheets';
 
 const PortfolioContext = createContext<PortfolioData | undefined>(undefined);
@@ -39,12 +39,12 @@ export function PortfolioProvider({ children }: {children: React.ReactNode;}) {
 
     async function load(): Promise<void> {
       try {
-        const [projectRows, certificateRows, experienceRows, resumeRows] = await Promise.all([
+        const [projectRows, certificateRows, experienceRows, resume] = await Promise.all([
         fetchSheetRows(SHEET_NAMES.projects).catch(() => []),
         fetchSheetRows(SHEET_NAMES.certificates).catch(() => []),
         fetchSheetRows(SHEET_NAMES.experience).catch(() => []),
-        fetchSheetRows(SHEET_NAMES.resume).catch(() => [])]
-        );
+        fetchResumeUrl().catch(() => ({}))
+        ]);
 
         if (cancelled) return;
 
@@ -59,7 +59,7 @@ export function PortfolioProvider({ children }: {children: React.ReactNode;}) {
           projects,
           certificates,
           experience,
-          resume: parseResume(resumeRows),
+          resume,
           status: nothingLoaded ? 'error' : 'ready',
           error: nothingLoaded ? 'Live content could not be loaded right now.' : undefined
         });

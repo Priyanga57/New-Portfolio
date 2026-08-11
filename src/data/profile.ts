@@ -85,12 +85,13 @@ export const workflowStages: Array<{label: string;description: string;}> = [
 
 
 export const navLinks: NavLink[] = [
-{ label: 'Home', to: '/' },
-{ label: 'About', to: '/about' },
-{ label: 'Projects', to: '/projects' },
-{ label: 'Experience', to: '/experience' },
-{ label: 'Certificates', to: '/certificates' },
-{ label: 'Contact', to: '/contact' }];
+{ label: 'Home',         to: '/'            },
+{ label: 'About',        to: '/about'       },
+{ label: 'Skills',       to: '/skills'      },
+{ label: 'Projects',     to: '/projects'    },
+{ label: 'Experience',   to: '/experience'  },
+{ label: 'Certificates', to: '/certificates'},
+{ label: 'Contact',      to: '/contact'     }];
 
 
 export const socialLinks: SocialLink[] = [

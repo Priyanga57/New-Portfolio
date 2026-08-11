@@ -1,6 +1,6 @@
 export default {
   darkMode: 'class',
-  content: ['./**/*.{ts,tsx,js,jsx,html}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -32,12 +32,10 @@ export default {
         glow: '0 0 0 1px var(--border), 0 20px 60px -30px var(--glow)',
       },
       maxWidth: {
-        content: [
-  './index.html',
-  './src/**/*.{js,ts,jsx,tsx}'
-],
+        content: '72rem',
       },
     },
   },
   plugins: [],
 };
+

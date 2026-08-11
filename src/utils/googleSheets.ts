@@ -5,12 +5,14 @@ import { clean, safeUrl, slugify, splitList, toBoolean } from './parse';
  * Public, read-only Google Sheet used as the CMS for this portfolio.
  * Only a public sheet id is referenced here — no credentials of any kind.
  */
-export const SHEET_ID = '1-vYObH2VKo9MLaLqE5CktEUtlxZhYs10GnUENQRRViI';
+export const SHEET_ID: string =
+  import.meta.env.VITE_GOOGLE_SHEET_ID as string ||
+  '1-vYObH2VKo9MLaLqE5CktEUtlxZhYs10GnUENQRRViI';
 
 export const SHEET_NAMES = {
   projects: 'Projects',
   certificates: 'Certificates',
-  experience: 'Expercise',
+  experience: 'Experience',
   resume: 'Resume'
 } as const;
 
@@ -95,6 +97,56 @@ export async function fetchSheetRows(sheetName: string): Promise<SheetRow[]> {
     const rows = await fetchViaOpenSheet(sheetName);
     cache.set(sheetName, { at: Date.now(), rows });
     return rows;
+  }
+}
+
+/**
+ * Reads only cell A1 from the Resume sheet.
+ * The sheet is expected to have just the resume URL in A1 — no header row needed.
+ * Falls back to scanning all rows if A1 doesn't contain a URL.
+ */
+export async function fetchResumeUrl(): Promise<ResumeInfo> {
+  const CACHE_KEY = '__resume_url__';
+  const cached = cache.get(CACHE_KEY);
+  if (cached && Date.now() - cached.at < CACHE_TTL_MS && cached.rows.length > 0) {
+    return { url: cached.rows[0]['url'] };
+  }
+
+  try {
+    const base = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq`;
+    const params = new URLSearchParams({
+      tqx: 'out:json',
+      sheet: SHEET_NAMES.resume,
+      range: 'A1',
+    });
+    const response = await fetch(`${base}?${params.toString()}`);
+    if (!response.ok) throw new Error('Resume sheet fetch failed');
+
+    const text = await response.text();
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start === -1 || end === -1) throw new Error('Resume parse failed');
+
+    const payload = JSON.parse(text.slice(start, end + 1)) as GvizResponse;
+    const row0 = payload.table?.rows?.[0];
+    const cell = row0?.c?.[0];
+    const rawValue = cellToString(cell ?? null);
+    const url = safeUrl(rawValue) ?? undefined;
+
+    // Cache the result
+    if (url) {
+      cache.set(CACHE_KEY, { at: Date.now(), rows: [{ url }] });
+    }
+
+    return { url };
+  } catch {
+    // Fallback: scan all rows for any URL
+    try {
+      const rows = await fetchSheetRows(SHEET_NAMES.resume);
+      return parseResume(rows);
+    } catch {
+      return {};
+    }
   }
 }
 
