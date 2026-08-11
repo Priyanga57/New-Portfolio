@@ -6,7 +6,7 @@ import { useSeo } from '../hooks/useSeo';
 
 export function NotFound() {
   useSeo({
-    title: 'Page not found | Priyanga V S — Data Analyst',
+    title: 'Page not found | Priyanga V S - Data Analyst',
     description: 'The page you were looking for is not available on the portfolio of Priyanga V S, Data Analyst.',
     path: '/404'
   });

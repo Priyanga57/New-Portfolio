@@ -1,4 +1,4 @@
-# 🌌 Priyanga V S — Personal Data Analyst Portfolio
+# 🌌 Priyanga V S - Personal Data Analyst Portfolio
 
 A high-performance, modern, and interactive portfolio website built for **Priyanga V S**, Data Analyst. Built with **React 18**, **TypeScript**, **Vite**, **Tailwind CSS**, **Framer Motion**, **EmailJS**, and **Google Sheets API**.
 

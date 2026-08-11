@@ -15,9 +15,9 @@ export interface SubmissionResult {
  * Falls back to mailto: if EmailJS keys are not configured.
  */
 export async function sendContactMessage(data: ContactFormData): Promise<SubmissionResult> {
-  const serviceId   = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const templateId  = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const publicKey   = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   // ── EmailJS ────────────────────────────────────────────────────────────────
   if (serviceId && templateId && publicKey) {
@@ -26,19 +26,19 @@ export async function sendContactMessage(data: ContactFormData): Promise<Submiss
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          service_id:      serviceId,
-          template_id:     templateId,
-          user_id:         publicKey,
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
           template_params: {
-            user_name:    data.name,
-            user_email:   data.email,
-            from_name:    data.name,
-            from_email:   data.email,
-            reply_to:     data.email,
-            time:         new Date().toLocaleString(),
+            user_name: data.name,
+            user_email: data.email,
+            from_name: data.name,
+            from_email: data.email,
+            reply_to: data.email,
+            time: new Date().toLocaleString(),
             submitted_at: new Date().toLocaleString(),
-            message:      data.message,
-            to_name:      'Priyanga V S',
+            message: data.message,
+            to_name: 'Priyanga V S',
           },
         }),
       });
@@ -59,7 +59,7 @@ export async function sendContactMessage(data: ContactFormData): Promise<Submiss
 
   // ── Mailto fallback ────────────────────────────────────────────────────────
   const subject = encodeURIComponent(`Portfolio enquiry from ${data.name}`);
-  const body    = encodeURIComponent(`${data.message}\n\n— ${data.name} (${data.email})`);
+  const body = encodeURIComponent(`${data.message}\n\n- ${data.name} (${data.email})`);
   window.location.href = `mailto:priyangaa7512@gmail.com?subject=${subject}&body=${body}`;
 
   return {

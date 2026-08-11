@@ -46,7 +46,7 @@ export async function downloadFile(
 ): Promise<void> {
   const downloadUrl = toDownloadUrl(url);
 
-  // Google Drive direct download — navigate to the export URL directly.
+  // Google Drive direct download - navigate to the export URL directly.
   // Google sends Content-Disposition: attachment so the browser saves it.
   if (downloadUrl.includes('drive.google.com/uc?export=download')) {
     const anchor = document.createElement('a');
@@ -59,7 +59,7 @@ export async function downloadFile(
     return;
   }
 
-  // Same-origin or CORS-enabled URL — fetch as blob and force download
+  // Same-origin or CORS-enabled URL - fetch as blob and force download
   try {
     const response = await fetch(downloadUrl);
     if (!response.ok) throw new Error('Fetch failed');

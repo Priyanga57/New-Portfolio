@@ -17,9 +17,9 @@ export function SkillsPage() {
   );
 
   useSeo({
-    title: 'Skills | Priyanga V S — Data Analyst',
+    title: 'Skills | Priyanga V S - Data Analyst',
     description:
-      'Technical skills of Priyanga V S — SQL, Python, Pandas, Power BI, Excel, Machine Learning, and more. Built for data extraction, cleaning, analysis and business intelligence.',
+      'Technical skills of Priyanga V S - SQL, Python, Pandas, Power BI, Excel, Machine Learning, and more. Built for data extraction, cleaning, analysis and business intelligence.',
     path: '/skills',
     jsonLd,
   });

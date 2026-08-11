@@ -16,13 +16,13 @@ export const personSchema: Record<string, unknown> = {
     name: education.institution
   },
   knowsAbout: [
-  'Data Analysis',
-  'SQL',
-  'Python',
-  'Power BI',
-  'Excel',
-  'Business Intelligence',
-  'Data Visualization'],
+    'Data Analysis',
+    'SQL',
+    'Python',
+    'Power BI',
+    'Excel',
+    'Business Intelligence',
+    'Data Visualization'],
 
   sameAs: [profile.linkedin, profile.github]
 };
@@ -32,13 +32,13 @@ export function websiteSchema(): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: `${profile.name} — ${profile.role}`,
+    name: `${profile.name} - ${profile.role}`,
     url: origin,
     inLanguage: 'en'
   };
 }
 
-export function breadcrumbSchema(items: Array<{name: string;path: string;}>): Record<string, unknown> {
+export function breadcrumbSchema(items: Array<{ name: string; path: string; }>): Record<string, unknown> {
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
   return {
     '@context': 'https://schema.org',

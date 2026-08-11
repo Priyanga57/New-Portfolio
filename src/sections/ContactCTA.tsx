@@ -16,11 +16,11 @@ export function ContactCTA() {
             <h2
               id="cta-heading"
               className="mx-auto mt-4 max-w-2xl font-display text-2xl font-semibold tracking-tight text-fg sm:text-3xl">
-              
+
               Looking for a Data Analyst who can turn your data into decisions?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
-              Happy to talk about analyst, BI or reporting roles — or to walk through any project in detail.
+              Happy to talk about analyst, BI or reporting roles - or to walk through any project in detail.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link to="/contact" className={buttonStyles()}>

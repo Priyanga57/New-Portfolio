@@ -24,17 +24,17 @@ export function About() {
   );
 
   useSeo({
-    title: 'About | Priyanga V S — Data Analyst',
+    title: 'About | Priyanga V S - Data Analyst',
     description:
-      'About Priyanga V S — a Data Analyst studying B.Tech in Artificial Intelligence & Data Science, working across SQL, Python, Power BI and Excel for reporting and business intelligence.',
+      'About Priyanga V S - a Data Analyst studying B.Tech in Artificial Intelligence & Data Science, working across SQL, Python, Power BI and Excel for reporting and business intelligence.',
     path: '/about',
     jsonLd,
   });
 
   const facts = [
-    { label: 'Projects',       value: projects.length     },
-    { label: 'Certifications', value: certificates.length  },
-    { label: 'Internships',    value: experience.length   },
+    { label: 'Projects', value: projects.length },
+    { label: 'Certifications', value: certificates.length },
+    { label: 'Internships', value: experience.length },
   ].filter((fact) => fact.value > 0);
 
   return (

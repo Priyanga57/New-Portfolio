@@ -44,7 +44,7 @@ export function useSeo({ title, description, path, image, jsonLd }: SeoOptions):
     upsertMeta('property', 'og:title', title);
     upsertMeta('property', 'og:description', description);
     upsertMeta('property', 'og:url', canonical);
-    upsertMeta('property', 'og:site_name', 'Priyanga V S — Data Analyst Portfolio');
+    upsertMeta('property', 'og:site_name', 'Priyanga V S - Data Analyst Portfolio');
 
     upsertMeta('name', 'twitter:card', image ? 'summary_large_image' : 'summary');
     upsertMeta('name', 'twitter:title', title);

@@ -38,7 +38,7 @@ export function Contact() {
   useSeo({
     title: 'Contact | Priyanga V S',
     description:
-      'Get in touch with Priyanga V S, Data Analyst based in Tamil Nadu, India — available for Data Analyst, Business Analyst and BI roles.',
+      'Get in touch with Priyanga V S, Data Analyst based in Tamil Nadu, India - available for Data Analyst, Business Analyst and BI roles.',
     path: '/contact',
     jsonLd
   });
@@ -241,9 +241,8 @@ export function Contact() {
                 <p aria-live="polite" className="min-h-[1.25rem]">
                   {result && (
                     <span
-                      className={`inline-flex items-center gap-2 text-sm ${
-                        result.success ? 'text-success' : 'text-warning'
-                      }`}>
+                      className={`inline-flex items-center gap-2 text-sm ${result.success ? 'text-success' : 'text-warning'
+                        }`}>
                       <CheckCircle2Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
                       {result.message}
                     </span>

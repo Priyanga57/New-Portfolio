@@ -3,7 +3,7 @@ import { clean, safeUrl, slugify, splitList, toBoolean } from './parse';
 
 /**
  * Public, read-only Google Sheet used as the CMS for this portfolio.
- * Only a public sheet id is referenced here — no credentials of any kind.
+ * Only a public sheet id is referenced here - no credentials of any kind.
  */
 export const SHEET_ID: string =
   import.meta.env.VITE_GOOGLE_SHEET_ID as string ||
@@ -28,7 +28,7 @@ interface GvizRow {
 }
 
 interface GvizTable {
-  cols: Array<{id: string;label: string;}>;
+  cols: Array<{ id: string; label: string; }>;
   rows: GvizRow[];
 }
 
@@ -38,7 +38,7 @@ interface GvizResponse {
 }
 
 const CACHE_TTL_MS = 5 * 60 * 1000;
-const cache = new Map<string, {at: number;rows: SheetRow[];}>();
+const cache = new Map<string, { at: number; rows: SheetRow[]; }>();
 
 function normalizeKey(label: string): string {
   return label.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -102,7 +102,7 @@ export async function fetchSheetRows(sheetName: string): Promise<SheetRow[]> {
 
 /**
  * Reads only cell A1 from the Resume sheet.
- * The sheet is expected to have just the resume URL in A1 — no header row needed.
+ * The sheet is expected to have just the resume URL in A1 - no header row needed.
  * Falls back to scanning all rows if A1 doesn't contain a URL.
  */
 export async function fetchResumeUrl(): Promise<ResumeInfo> {
@@ -180,7 +180,7 @@ async function fetchGvizRows(sheetName: string): Promise<SheetRow[]> {
   let headers = table.cols.map((col) => normalizeKey(col.label ?? ''));
   let dataRows = table.rows;
 
-  // Some sheets return unlabelled columns — fall back to the first data row.
+  // Some sheets return unlabelled columns - fall back to the first data row.
   if (headers.every((header) => header.length === 0) && dataRows.length > 0) {
     headers = dataRows[0].c.map((cell) => normalizeKey(cellToString(cell)));
     dataRows = dataRows.slice(1);
@@ -216,65 +216,65 @@ function pick(row: SheetRow, keys: string[]): string | undefined {
 
 export function parseProjects(rows: SheetRow[]): Project[] {
   return rows.
-  map((row, index) => {
-    const title = pick(row, ['title', 'name', 'project', 'projecttitle']);
-    if (!title) return null;
-    const rawId = pick(row, ['id', 'sno', 'serialno']);
-    const project: Project = {
-      id: rawId ? slugify(rawId) || slugify(title) : slugify(title) || `project-${index + 1}`,
-      title,
-      description: pick(row, ['description', 'summary', 'about']) ?? '',
-      image: safeUrl(pick(row, ['image', 'imageurl', 'thumbnail'])),
-      technologies: splitList(pick(row, ['technologies', 'techstack', 'tech']), /[;,|]/),
-      githubUrl: safeUrl(pick(row, ['githuburl', 'github', 'repo', 'repository'])),
-      liveUrl: safeUrl(pick(row, ['liveurl', 'live', 'demo', 'demourl'])),
-      category: pick(row, ['category', 'type']),
-      featured: toBoolean(pick(row, ['featured'])),
-      features: splitList(pick(row, ['features', 'keyfeatures']))
-    };
-    return project;
-  }).
-  filter((project): project is Project => project !== null);
+    map((row, index) => {
+      const title = pick(row, ['title', 'name', 'project', 'projecttitle']);
+      if (!title) return null;
+      const rawId = pick(row, ['id', 'sno', 'serialno']);
+      const project: Project = {
+        id: rawId ? slugify(rawId) || slugify(title) : slugify(title) || `project-${index + 1}`,
+        title,
+        description: pick(row, ['description', 'summary', 'about']) ?? '',
+        image: safeUrl(pick(row, ['image', 'imageurl', 'thumbnail'])),
+        technologies: splitList(pick(row, ['technologies', 'techstack', 'tech']), /[;,|]/),
+        githubUrl: safeUrl(pick(row, ['githuburl', 'github', 'repo', 'repository'])),
+        liveUrl: safeUrl(pick(row, ['liveurl', 'live', 'demo', 'demourl'])),
+        category: pick(row, ['category', 'type']),
+        featured: toBoolean(pick(row, ['featured'])),
+        features: splitList(pick(row, ['features', 'keyfeatures']))
+      };
+      return project;
+    }).
+    filter((project): project is Project => project !== null);
 }
 
 export function parseCertificates(rows: SheetRow[]): Certificate[] {
   return rows.
-  map((row, index) => {
-    const title = pick(row, ['title', 'name', 'certificate', 'certificatetitle']);
-    if (!title) return null;
-    const rawId = pick(row, ['sno', 'id', 'serialno']);
-    const certificate: Certificate = {
-      id: rawId ? `certificate-${slugify(rawId)}` : slugify(title) || `certificate-${index + 1}`,
-      title,
-      issuer: pick(row, ['issuer', 'provider', 'organization', 'issuedby']),
-      date: pick(row, ['date', 'issuedate', 'issued']),
-      image: safeUrl(pick(row, ['image', 'imageurl', 'thumbnail'])),
-      link: safeUrl(pick(row, ['link', 'url', 'certificatelink', 'credentialurl'])),
-      category: pick(row, ['category', 'type'])
-    };
-    return certificate;
-  }).
-  filter((certificate): certificate is Certificate => certificate !== null);
+    map((row, index) => {
+      const title = pick(row, ['title', 'name', 'certificate', 'certificatetitle']);
+      if (!title) return null;
+      const rawId = pick(row, ['sno', 'id', 'serialno']);
+      const certificate: Certificate = {
+        id: rawId ? `certificate-${slugify(rawId)}` : slugify(title) || `certificate-${index + 1}`,
+        title,
+        issuer: pick(row, ['issuer', 'provider', 'organization', 'issuedby']),
+        date: pick(row, ['date', 'issuedate', 'issued']),
+        image: safeUrl(pick(row, ['image', 'imageurl', 'thumbnail'])),
+        link: safeUrl(pick(row, ['link', 'url', 'certificatelink', 'credentialurl'])),
+        category: pick(row, ['category', 'type'])
+      };
+      return certificate;
+    }).
+    filter((certificate): certificate is Certificate => certificate !== null);
 }
 
 export function parseExperience(rows: SheetRow[]): ExperienceItem[] {
   return rows.
-  map((row, index) => {
-    const title = pick(row, ['title', 'role', 'position']);
-    const company = pick(row, ['company', 'organization', 'employer']);
-    if (!title && !company) return null;
-    const rawId = pick(row, ['sno', 'id', 'serialno']);
-    const item: ExperienceItem = {
-      id: rawId ? `experience-${slugify(rawId)}` : `experience-${index + 1}`,
-      title: title ?? company ?? '',
-      company: title ? company : undefined,
-      period: pick(row, ['period', 'duration', 'dates']),
-      location: pick(row, ['location', 'place', 'city']),
-      contributions: splitList(pick(row, ['keycontributions', 'contributions', 'responsibilities']))
-    };
-    return item;
-  }).
-  filter((item): item is ExperienceItem => item !== null);
+    map((row, index) => {
+      const title = pick(row, ['title', 'role', 'position']);
+      const company = pick(row, ['company', 'organization', 'employer']);
+      if (!title && !company) return null;
+      const rawId = pick(row, ['sno', 'id', 'serialno']);
+      const item: ExperienceItem = {
+        id: rawId ? `experience-${slugify(rawId)}` : `experience-${index + 1}`,
+        title: title ?? company ?? '',
+        company: title ? company : undefined,
+        period: pick(row, ['period', 'duration', 'dates']),
+        location: pick(row, ['location', 'place', 'city']),
+        contributions: splitList(pick(row, ['keycontributions', 'contributions', 'responsibilities']))
+      };
+      return item;
+    }).
+    filter((item): item is ExperienceItem => item !== null);
 }
 
 /** The Resume sheet layout is not fixed, so the first valid URL found is used. */

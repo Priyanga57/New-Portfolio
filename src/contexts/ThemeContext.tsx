@@ -11,7 +11,8 @@ function readInitialTheme(): Theme {
     if (stored === 'dark' || stored === 'light') return stored;
   } catch {
 
-    /* localStorage may be unavailable — fall through to system preference. */}
+    /* localStorage may be unavailable - fall through to system preference. */
+}
   if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
   return 'dark';
 }
@@ -33,7 +34,7 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-export function ThemeProvider({ children }: {children: React.ReactNode;}) {
+export function ThemeProvider({ children }: { children: React.ReactNode; }) {
   const [theme, setTheme] = useState<Theme>(readInitialTheme);
 
   useEffect(() => {
@@ -42,7 +43,8 @@ export function ThemeProvider({ children }: {children: React.ReactNode;}) {
       window.localStorage.setItem(STORAGE_KEY, theme);
     } catch {
 
-      /* Ignore persistence failures. */}
+      /* Ignore persistence failures. */
+}
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
